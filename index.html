@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parrucchiere Sannar - Tagli precisi, sfumature perfette a Genova. Prenota il tuo appuntamento online o via WhatsApp.">
+    <meta name="title" content="Parrucchiere Sannar | Tagli Precisi a Genova">
+    <title>Parrucchiere Sannar | Tagli Precisi a Genova</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #1a1a1a;
+            --light: #ffffff;
+            --gray: #4a4a4a;
+            --accent: #d4af37;
+            --light-gray: #f5f5f5;
+            --border: #2a2a2a;
+            --green: #25d366;
+            --danger: #e74c3c;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+        }
+
+        p {
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            color: var(--gray);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Urgency Badge */
+        .urgency-badge {
+            display: inline-block;
+            background-color: var(--danger);
+            color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background-color: var(--dark);
+            color: var(--light);
+            border: 2px solid var(--dark);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--green);
+            color: white;
+            border: 2px solid var(--green);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #20ba5b;
+            border-color: #20ba5b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-call {
+            background-color: var(--dark);
+            color: var(--light);
+            border: 2px solid var(--dark);
+        }
+
+        .btn-call:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-google {
+            background-color: #fff;
+            color: var(--dark);
+            border: 2px solid var(--dark);
+        }
+
+        .btn-google:hover {
+            background-color: var(--dark);
+            color: var(--light);
+        }
+
+        .btn-small {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header / Navigation */
+        header {
+            background-color: var(--light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .logo .accent {
+            color: var(--accent);
+        }
+
+        nav {
+            display: none;
+        }
+
+        nav.active {
+            display: flex;
+        }
+
+        nav {
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background-color: var(--light);
+            padding: 1rem;
+            gap: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+            background-color: var(--light-gray);
+        }
+
+        .nav-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex !important;
+                flex-direction: row;
+                position: static;
+                background-color: transparent;
+                padding: 0;
+                box-shadow: none;
+                gap: 2rem;
+            }
+            nav a {
+                padding: 0;
+                border-left: none;
+                border-bottom: 2px solid transparent;
+            }
+            nav a:hover,
+            nav a.active {
+                background-color: transparent;
+                border-left-color: transparent;
+                border-bottom-color: var(--accent);
+            }
+            .nav-toggle {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
+            color: var(--light);
+            padding: 5rem 0 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .hero .subheading {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: #bbb;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .urgency {
+            font-size: 1.05rem;
+            color: #ffcc00;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        @media (min-width: 640px) {
+            .hero .cta-buttons {
+                flex-direction: row;
+            }
+        }
+
+        /* Gallery Section */
+        .section {
+            padding: 3.5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            background-color: var(--light-gray);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--light);
+            padding: 1.5rem 1rem 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 3px solid var(--accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background-color: var(--light);
+            text-align: center;
+            padding: 2.5rem 0;
+            border-top: 2px solid var(--light-gray);
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .pricing-content h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .price-card {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid var(--accent);
+        }
+
+        .price-card h4 {
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .price-amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-card p {
+            font-size: 0.9rem;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            background-color: var(--light);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .feature p {
+            font-size: 0.95rem;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background-color: var(--light-gray);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .review-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .reviews-cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .reviews-label {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Mid Page */
+        .cta-mid {
+            background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
+            color: var(--light);
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+
+        .cta-mid h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .cta-mid-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .cta-mid-buttons {
+                flex-direction: row;
+            }
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: var(--light);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: var(--light-gray);
+            padding: 1.8rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .faq-item h4 {
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-item p {
+            font-size: 0.95rem;
+        }
+
+        /* How to Arrive Section */
+        .how-to-arrive {
+            background-color: var(--light-gray);
+        }
+
+        .arrive-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .arrive-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .arrive-item {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .arrive-item h4 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .arrive-item p {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 66.66%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Hours Section */
+        .hours-section {
+            background-color: var(--light);
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .hours-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .hours-card h3 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .day-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .day-time {
+            color: var(--gray);
+        }
+
+        .day-time.closed {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--light-gray);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-card h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-card p {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
+            color: var(--light);
+            padding: 3.5rem 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            color: var(--light);
+            margin-bottom: 0.8rem;
+        }
+
+        .final-cta .urgency {
+            color: #ffcc00;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            color: #bbb;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .cta-group {
+                flex-direction: row;
+            }
+        }
+
+        .booking-note {
+            font-size: 0.85rem;
+            color: #bbb;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #888;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a {
+            color: var(--accent);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 2.5rem 0;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            .gallery {
+                gap: 1rem;
+            }
+
+            h1 {
+                margin-bottom: 0.8rem;
+            }
+
+            .services-grid,
+            .features,
+            .reviews-grid,
+            .faq-grid,
+            .contact-grid,
+            .hours-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Intersection Observer for fade-in */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Parrucchiere <span class="accent">Sannar</span></div>
+                <button class="nav-toggle" id="navToggle">☰</button>
+                <nav id="nav">
+                    <a href="#gallery">Lavori</a>
+                    <a href="#services">Servizi</a>
+                    <a href="#reviews">Recensioni</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#final-cta">Prenota</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="urgency-badge">🔥 Posti limitati oggi</div>
+            <h1>Tagli Precisi. Sfumature Perfette.</h1>
+            <p class="subheading">Esci con un taglio che si nota. Non uno qualsiasi.</p>
+            <p class="urgency">Disponibilità limitata – Prenota ora per oggi</p>
+            <div class="cta-buttons">
+                <a href="tel:+39324780503" class="btn btn-call">📞 Chiama Subito</a>
+                <a href="https://wa.me/39324780503?text=Ciao%20Sannar%2C%20vorrei%20prenotare%20un%20appuntamento%20oggi" class="btn btn-whatsapp" target="_blank">💬 Prenota su WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Lavori</h2>
+                <p style="margin-top: 1rem; color: var(--gray);">Prove di qualità dai nostri clienti</p>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="image1.jpg" alt="Taglio sfumato pulito">
+                    <div class="gallery-caption">Fade Preciso</div>
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="image2.jpg" alt="Design creativo rasato">
+                    <div class="gallery-caption">Design Creativo</div>
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="image3.jpg" alt="Combinazione tatuaggio e sfumatura">
+                    <div class="gallery-caption">Taglio + Dettagli</div>
+                </div>
+                <div class="gallery-item fade-in-on-scroll">
+                    <img src="image4.jpg" alt="Dettaglio taglio raffinato">
+                    <div class="gallery-caption">Finish Raffinato</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mid CTA -->
+    <section class="cta-mid">
+        <div class="container">
+            <h3>Soddisfatto o non paghi</h3>
+            <p style="margin: 1rem 0; color: #bbb;">Ti garantiamo la qualità. Se non sei soddisfatto, correggiamo gratis.</p>
+            <div class="cta-mid-buttons">
+                <a href="tel:+39324780503" class="btn btn-call">📞 Chiama Ora</a>
+                <a href="https://wa.me/39324780503?text=Ciao%20Sannar%2C%20vorrei%20prenotare%20un%20appuntamento" class="btn btn-whatsapp" target="_blank">💬 Scrivi Ora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cosa Facciamo</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in-on-scroll">
+                    <h3>✂️ Tagli Precisi</h3>
+                    <p>Design moderni e classici. Ogni taglio è personalizzato per la tua forma di viso e il tuo stile personale.</p>
+                </div>
+                <div class="service-card fade-in-on-scroll">
+                    <h3>🔪 Sfumature Perfette</h3>
+                    <p>Dal fade classico ai design creativi. Sfumature graduate con precisione millimetrica usando attrezzature professionali.</p>
+                </div>
+                <div class="service-card fade-in-on-scroll">
+                    <h3>🧔 Cura Barba Completa</h3>
+                    <p>Rifinitura barba, contornatura precisa e dettagli di design. Cura professionale da barbiere esperto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-content">
+                <h3>Prezzi Accessibili</h3>
+                <p style="margin-top: 0.5rem; color: var(--gray);">Qualità professionale senza strafare</p>
+                <div class="pricing-grid">
+                    <div class="price-card fade-in-on-scroll">
+                        <h4>Taglio Standard</h4>
+                        <div class="price-amount">€15–€18</div>
+                        <p>Taglio completo con dettagli</p>
+                    </div>
+                    <div class="price-card fade-in-on-scroll">
+                        <h4>Taglio + Barba</h4>
+                        <div class="price-amount">€20–€25</div>
+                        <p>Pacchetto completo cura viso</p>
+                    </div>
+                    <div class="price-card fade-in-on-scroll">
+                        <h4>Design Creativo</h4>
+                        <div class="price-amount">€20–€30</div>
+                        <p>Design personalizzato e sfumature</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section why-choose">
+        <div class="container">
+            <div class="section-title">
+                <h2>Perché Fidarsi di Sannar</h2>
+            </div>
+            <div class="features">
+                <div class="feature fade-in-on-scroll">
+                    <div class="feature-icon">✅</div>
+                    <h3>Clienti Soddisfatti</h3>
+                    <p>Decine di clienti fissi che tornano perché sanno di ricevere il meglio.</p>
+                </div>
+                <div class="feature fade-in-on-scroll">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Precisione Garantita</h3>
+                    <p>Ogni taglio è curato nei dettagli. Qualità che si vede a vista d'occhio.</p>
+                </div>
+                <div class="feature fade-in-on-scroll">
+                    <div class="feature-icon">😊</div>
+                    <h3>Ambiente Accogliente</h3>
+                    <p>Zona rilassante e professionale. Ti sentirai a tuo agio dal primo momento.</p>
+                </div>
+                <div class="feature fade-in-on-scroll">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Risposta Veloce</h3>
+                    <p>WhatsApp o telefono – rispondiamo in pochi minuti per prenotare.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="section reviews" id="reviews">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quello che Dicono i Clienti</h2>
+                <p class="reviews-label">✅ Recensioni reali da clienti veri</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card fade-in-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Finalmente un barbiere che ascolta quello che vuoi. Sannar mi ha fatto un taglio che mette in risalto il mio viso. Torno di sicuro."</p>
+                    <p class="review-author">— Matteo G.</p>
+                </div>
+                <div class="review-card fade-in-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Precisione, pulizia, professionalità. Non è un negozio qualsiasi – vedi subito la differenza. Consigliato a tutti."</p>
+                    <p class="review-author">— Paolo R.</p>
+                </div>
+                <div class="review-card fade-in-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Sfumature perfette, atmosfera rilassante. Prezzo giusto per la qualità. Divento cliente fisso."</p>
+                    <p class="review-author">— Antonio M.</p>
+                </div>
+            </div>
+            <div class="reviews-cta">
+                <a href="https://www.google.com/search?q=Parrucchiere+Sannar+Genova" target="_blank" class="btn btn-google btn-small">⭐ Leggi altre recensioni su Google</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Domande Frequenti</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item fade-in-on-scroll">
+                    <h4>❓ Quanto tempo occorre per prenotare?</h4>
+                    <p><strong>Meno di 30 secondi.</strong> Una chiamata o un messaggio WhatsApp e sei prenotato. Rispondiamo subito.</p>
+                </div>
+                <div class="faq-item fade-in-on-scroll">
+                    <h4>⏱️ Quanto dura un taglio?</h4>
+                    <p>30-45 minuti per un taglio completo. Dipende dalla complessità del design, ma non avrai mai attese lunghe.</p>
+                </div>
+                <div class="faq-item fade-in-on-scroll">
+                    <h4>🚶 Accettate senza appuntamento?</h4>
+                    <p>Sì, walk-in disponibili. Ma consigliamo di prenotare per evitare attese. Chiama e sarà pronto in poco.</p>
+                </div>
+                <div class="faq-item fade-in-on-scroll">
+                    <h4>💰 Quanto costano i tagli?</h4>
+                    <p>€15–€30 in base al tipo di lavoro. Tagli standard a €15–€18. Design creativi a €20–€30. Niente sorprese.</p>
+                </div>
+                <div class="faq-item fade-in-on-scroll">
+                    <h4>🔒 Garanzia soddisfazione?</h4>
+                    <p>Se non sei soddisfatto, correggiamo il taglio gratis. La tua soddisfazione è la nostra garanzia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opening Hours -->
+    <section class="section hours-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quando Trovarci</h2>
+            </div>
+            <div class="hours-grid">
+                <div class="hours-card fade-in-on-scroll">
+                    <h3>📅 Orari Settimanali</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span class="day-name">Lunedì</span>
+                            <span class="day-time">10:00 - 19:00</span>
+                        </li>
+                        <li>
+                            <span class="day-name">Martedì</span>
+                            <span class="day-time">10:00 - 19:00</span>
+                        </li>
+                        <li>
+                            <span class="day-name">Mercoledì</span>
+                            <span class="day-time">10:00 - 19:00</span>
+                        </li>
+                        <li>
+                            <span class="day-name">Giovedì</span>
+                            <span class="day-time">10:00 - 19:00</span>
+                        </li>
+                        <li>
+                            <span class="day-name">Venerdì</span>
+                            <span class="day-time">10:00 - 19:00</span>
+                        </li>
+                        <li>
+                            <span class="day-name">Sabato</span>
+                            <span class="day-time">09:00 - 18:00</span>
+                        </li>
+                        <li>
+                            <span class="day-name">Domenica</span>
+                            <span class="day-time closed">Chiuso</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="hours-card fade-in-on-scroll">
+                    <h3>💬 Prenotazioni Veloci</h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 0.95rem;"><strong>Prenota in meno di 30 secondi</strong></p>
+                    <a href="tel:+39324780503" class="btn btn-call btn-small" style="display: block; margin-bottom: 1rem;">📞 Chiama Ora</a>
+                    <a href="https://wa.me/39324780503?text=Ciao%20Sannar%2C%20vorrei%20prenotare%20un%20appuntamento" target="_blank" class="btn btn-whatsapp btn-small" style="display: block;">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Arrive -->
+    <section class="section how-to-arrive">
+        <div class="container">
+            <div class="section-title">
+                <h2>Come Raggiungerci</h2>
+            </div>
+            <div class="arrive-grid">
+                <div class="arrive-item fade-in-on-scroll">
+                    <h4>🚶 A Piedi</h4>
+                    <p><strong>Via Polleri, 19r</strong> – Genova<br>Centro città, facilmente raggiungibile da tutto il centro storico.</p>
+                </div>
+                <div class="arrive-item fade-in-on-scroll">
+                    <h4>🚌 Trasporto Pubblico</h4>
+                    <p><strong>Bus:</strong> Linee 1, 4, 7<br><strong>Metro:</strong> De Ferrari (5 min)<br><strong>Treno:</strong> Centrale (10 min)</p>
+                </div>
+                <div class="arrive-item fade-in-on-scroll">
+                    <h4>🚗 Parcheggio</h4>
+                    <p><strong>Brignone:</strong> 2 min<br><strong>Via Luccoli:</strong> 5 min<br>Varie opzioni pubbliche in zona</p>
+                </div>
+                <div class="arrive-item fade-in-on-scroll">
+                    <h4>📍 Consulta la Mappa</h4>
+                    <p>Usa Google Maps per indicazioni precise. Cerca "Parrucchiere Sannar Genova".</p>
+                </div>
+            </div>
+            <div class="map-container fade-in-on-scroll">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d711.8391926699386!2d8.9292019!3d44.4141637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d34300345f4e4b:0xe304522c36d65a3a!2sPARRUCCHIERE%20SANNAR!5e0!3m2!1sit!2sit!4v1713607200000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://www.google.com/maps/place/PARRUCCHIERE+SANNAR/@44.4141675,8.926627,17z/data=!4m6!3m5!1s0x12d34300345f4e4b:0xe304522c36d65a3a!8m2!3d44.4141637!4d8.9292019!16s%2Fg%2F11w3gpw9b7?hl=en-US&entry=ttu" target="_blank" class="btn btn-primary">📍 Visualizza su Google Maps e Ottieni Indicazioni</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contattaci Direttamente</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card fade-in-on-scroll">
+                    <h3>📞 Chiama Subito</h3>
+                    <p><a href="tel:+39324780503"><strong>+39 324 780 503</strong></a></p>
+                    <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem;">Risposte veloci – Prenotazioni in pochi secondi</p>
+                </div>
+                <div class="contact-card fade-in-on-scroll">
+                    <h3>💬 WhatsApp Diretto</h3>
+                    <p>Scrivi subito e ricevi conferma della prenotazione</p>
+                    <a href="https://wa.me/39324780503?text=Ciao%20Sannar%2C%20vorrei%20prenotare%20un%20appuntamento" target="_blank" style="display: inline-block; margin-top: 1rem; font-weight: 600; color: var(--accent);">Apri WhatsApp →</a>
+                </div>
+                <div class="contact-card fade-in-on-scroll">
+                    <h3>📍 Indirizzo Completo</h3>
+                    <p><strong>Via Polleri, 19r</strong><br>16124 Genova, Italia</p>
+                    <a href="https://www.google.com/maps/place/PARRUCCHIERE+SANNAR/@44.4141675,8.926627,17z" target="_blank" style="display: inline-block; margin-top: 1rem;">Visualizza su Mappe →</a>
+                </div>
+                <div class="contact-card fade-in-on-scroll">
+                    <h3>📱 Seguici Social</h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 0.95rem;">Ultimi lavori e aggiornamenti</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/parrucchiere-sannar" target="_blank" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/parrucchiere.sannar/" target="_blank" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="final-cta">
+        <div class="container">
+            <h2>Pronto per il Taglio Perfetto?</h2>
+            <p class="urgency">Posti limitati – Prenota oggi</p>
+            <p>Non aspettare il prossimo weekend. Contattaci adesso per una prenotazione veloce.</p>
+            <div class="cta-group">
+                <a href="tel:+39324780503" class="btn btn-call">📞 Chiama Subito</a>
+                <a href="https://wa.me/39324780503?text=Ciao%20Sannar%2C%20vorrei%20prenotare%20un%20appuntamento" class="btn btn-whatsapp" target="_blank">💬 Prenota su WhatsApp</a>
+            </div>
+            <p class="booking-note">Risposta garantita in meno di 5 minuti</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Parrucchiere Sannar</h4>
+                    <p>Tagli precisi, sfumature perfette</p>
+                    <p>Qualità professionale a Genova</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti Rapidi</h4>
+                    <a href="tel:+39324780503">📞 +39 324 780 503</a>
+                    <a href="https://wa.me/39324780503?text=Ciao%20Sannar%2C%20vorrei%20prenotare%20un%20appuntamento" target="_blank">💬 WhatsApp</a>
+                    <p>Via Polleri, 19r, 16124 Genova</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Link Rapidi</h4>
+                    <a href="#gallery">Lavori</a>
+                    <a href="#services">Servizi</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#final-cta">Prenota</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Seguici</h4>
+                    <a href="https://www.facebook.com/parrucchiere-sannar" target="_blank">📘 Facebook</a>
+                    <a href="https://www.instagram.com/parrucchiere.sannar/" target="_blank">📷 Instagram</a>
+                    <a href="https://www.google.com/search?q=Parrucchiere+Sannar+Genova" target="_blank">⭐ Google Reviews</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Parrucchiere Sannar. Tagli precisi a Genova. Prenota ora – +39 324 780 503</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const navToggle = document.getElementById('navToggle');
+        const nav = document.getElementById('nav');
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll and active nav highlighting
+        const sections = document.querySelectorAll('[id]');
+        const navLinks = document.querySelectorAll('nav a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Fade in on scroll
+                if (entry.target.classList.contains('fade-in-on-scroll')) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                }
+                
+                // Active nav highlighting
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '-100px 0px -66% 0px'
+        });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Fade in on scroll observer
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('fade-in-on-scroll')) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            fadeObserver.observe(el);
+        });
+
+        // Check if currently open
+        function updateHoursStatus() {
+            const now = new Date();
+            const day = now.getDay();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const currentTime = hours * 60 + minutes;
+            
+            let isOpen = false;
+            
+            if (day >= 1 && day <= 5) { // Mon-Fri
+                isOpen = currentTime >= 10 * 60 && currentTime < 19 * 60;
+            } else if (day === 6) { // Saturday
+                isOpen = currentTime >= 9 * 60 && currentTime < 18 * 60;
+            }
+            
+            const status = document.createElement('div');
+            status.style.cssText = 'text-align: center; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; background: ' + (isOpen ? '#d4f4dd' : '#f4d4d4');
+            status.innerHTML = '<p style="color: ' + (isOpen ? '#27ae60' : '#e74c3c') + '; font-weight: 600; margin: 0; font-size: 1.05rem;">' + (isOpen ? '✅ Siamo Aperti! Prenota Ora' : '⏰ Attualmente Chiusi – Apriamo Domani') + '</p>';
+            
+            const hoursSection = document.querySelector('.hours-section .container');
+            if (hoursSection) {
+                const sectionTitle = hoursSection.querySelector('.section-title');
+                if (sectionTitle && sectionTitle.nextElementSibling) {
+                    hoursSection.insertBefore(status, sectionTitle.nextElementSibling);
+                }
+            }
+        }
+        
+        updateHoursStatus();
+    </script>
+</body>
+</html>
